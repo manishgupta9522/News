@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export default class News extends Component {
   static defaultProps = {
-    country: 'in',
+    country: 'us',
     pageSize: 8, 
     category: 'general',
   }
@@ -30,7 +30,7 @@ export default class News extends Component {
   }
 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=business&apiKey=234c7058304a4d6c8a80170d7ca2c455&page=1&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9411fae5b48143d28a1df1491db5b98b&page=1&pageSize=${this.props.pageSize}`;
     this.setState({loading:true});
     let data= await fetch(url);
     let rawData=await data.json();
@@ -43,7 +43,7 @@ export default class News extends Component {
   handleNext=async ()=> {
     console.log("Next"); 
     if (!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=business&apiKey=234c7058304a4d6c8a80170d7ca2c455&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9411fae5b48143d28a1df1491db5b98b&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
       let data= await fetch(url);
       let rawData=await data.json();
@@ -56,7 +56,7 @@ export default class News extends Component {
   }
   handlePrevious=async ()=>{
     
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=business&apiKey=234c7058304a4d6c8a80170d7ca2c455&page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&category=business&apiKey=9411fae5b48143d28a1df1491db5b98b&page=${this.state.page-1}&pageSize=${this.props.pageSize}`;
     this.setState({loading:true});
     let data= await fetch(url);
     let rawData=await data.json();
