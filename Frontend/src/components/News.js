@@ -30,27 +30,27 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
-    try {
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9411fae5b48143d28a1df1491db5b98b&page=1&pageSize=${this.props.pageSize}`;
-      this.setState({ loading: true });
-      let data = await fetch(url);
-      let rawData = await data.json();
-      if (rawData.articles) {
-        this.setState({
-          articles: rawData.articles,
-          totalResults: rawData.totalResults,
-          loading: false,
-        });
-      } else {
-        console.error("API response does not contain articles:", rawData);
-        this.setState({ articles: [], loading: false });
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+  try {
+    let url = `http://localhost:5000/news?country=${this.props.country}&category=${this.props.category}&apiKey=9411fae5b48143d28a1df1491db5b98b&page=1&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
+    let data = await fetch(url);
+    let rawData = await data.json();
+    if (rawData.articles) {
+      this.setState({
+        articles: rawData.articles,
+        totalResults: rawData.totalResults,
+        loading: false,
+      });
+    } else {
+      console.error("API response does not contain articles:", rawData);
       this.setState({ articles: [], loading: false });
     }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    this.setState({ articles: [], loading: false });
   }
-  
+}
+
 
   handleNext=async ()=> {
     console.log("Next"); 
